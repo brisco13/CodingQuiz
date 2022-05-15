@@ -13,14 +13,15 @@
 <body>
     <!-- banner at the top of screen - will show progress/status of quiz -->
     <div id="header">
-        <div id="banner"><h1>Hello! Welcome to quiz!</h1></div>
+        <div id="banner"><h1>Hello! <br> Welcome to the quiz!</h1></div>
+        <div id="how-to"><h3>Press "Start Game" below to begin the quiz. You will have 30 seconds to answer all the questions. If you score in the top 5 you will be able to enter your initials to the leaderboard below! Good luck!</h3></div>
         <h1 class="time"></h1>
-        <div id="main"></div>
+        <div id="correctDiv"><h2 id="correct"></h2></div>
     </div>
 
     <main>
-
-    <button id="start_button" type="button" class="btn btn-dark">Start Game</button>
+<br>
+    <div id="center"><button id="start_button" type="button" class="btn btn-dark btn-lg">Start Game</button></div>
     <!-- show questions with options -->
     <!-- visible while playing and not visible when not playing -->
     <div id="question-card" style="display: none">
@@ -41,18 +42,45 @@
     </div>
 
   
-    <br><br><br>
-    <!-- show top three scores with initials -->
-    <!-- visible while not playing -->
-    <div id="scoreboard">
-    <section>
-        <h2>Leaderoard</h2> <br>
-        <h3 id="1-place"></h3> <br>
-        <h3 id="2-place"></h3> <br>
-        <h3 id="3-place"></h3> <br>
-        <h3 id="4-place"></h3> <br>
-        <h3 id="5-place"></h3>
-    </section>
+    <br><br>
+<div id="scoreboard">
+    <table  class="table table-striped table-info">
+        <h2 id="leaderheader" >Leaderboard</h2>
+        <thead>
+          <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">Initials</th>
+            <th scope="col">Score</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <tr>
+            <th id= "1-place" scope="row"></th>
+            <td id="1-place-initials"></td>
+            <td id="1-place-score"></td>
+          </tr>
+          <tr>
+            <th id= "2-place" scope="row"></th>
+            <td id="2-place-initials"></td>
+            <td id="2-place-score"></td>
+          </tr>
+          <tr>
+            <th id= "3-place" scope="row"></th>
+            <td id="3-place-initials"></td>
+            <td id="3-place-score"></td>
+          </tr>
+          <tr>
+            <th id= "4-place" scope="row"></th>
+            <td id="4-place-initials"></td>
+            <td id="4-place-score"></td>
+          </tr>
+          <tr>
+            <th id= "5-place" scope="row"></th>
+            <td id="5-place-initials"></td>
+            <td id="5-place-score"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     </main>
     <!-- link to js that starts quiz, shows questions, and handles grading -->

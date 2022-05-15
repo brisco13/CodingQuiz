@@ -6,3 +6,24 @@
     border: 2px solid black;
     border-radius: 20px;
 }
+
+#leaderheader{
+    text-align: center;
+}
+
+#header{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 2% 5%;
+}
+
+#center{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#how-to{
+    font-size: small;
+}
