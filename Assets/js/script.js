@@ -106,6 +106,8 @@ function makeLeaderboard() {
 
 function hide() {
     timeLeft.innerHTML = `${timer} seconds left to play. <br/> ${qLeft} questions remaining`;
+
+    
     centDiv.style.display = "none";
     qCard.style.display = "block";
     qCard.style.textAlign= "center";
@@ -115,6 +117,13 @@ function hide() {
     howTo.style.display = "none";
     banner.style.display = "none";
     correctDiv.style.display = "block";
+
+    qCard.style.backgroundColor = "beige";
+    qCard.style.border = "2px solid black";
+    qCard.style.borderRadius = "20px";
+    qCard.style.color = "black";
+    qCard.style.padding = "1%";
+    qCard.style.padding = "5%";
     formatClear();
 }
 
