@@ -34,7 +34,7 @@ let numQs = 0;
 let qLeft = archiveQs.length;
 let madeLeaderboard = false;
 
-
+localStorage.setItem("ArchiveQs", JSON.stringify(archiveQs));
 
 // get/create leaderboard in local storage
 function makeLeader() {
@@ -44,8 +44,8 @@ function makeLeader() {
     } else {
         localStorage.setItem("hasQuizzed", true);
         leaderboard = [
-            ["ABC",2],
-            ["DEF",1],
+            ["ABC",0],
+            ["DEF",0],
             ["GHI",0],
             ["JKL",0],
             ["MNO",0],
@@ -91,12 +91,13 @@ function makeLeaderboard() {
                 }
 
                 isTop();
-                show();
-                correctDiv.style.display = "none";                
+                show();              
             }
             
         }, 1000);
     }
+
+
     // start game
     start_button.addEventListener("click", function() {
         startGame();
@@ -133,11 +134,7 @@ function show() {
 // start button triggers quiz
     function startGame() {
         isPlaying = true;
-        numQs = 0;
-        qLeft = archiveQs.length;
-        numRight = 0;
-        qArray = archiveQs;
-        ansKey =archiveK;
+        resetQs();
         countdown();
         makeQuestion();
     }
@@ -146,7 +143,7 @@ function show() {
 function makeQuestion() {
     // check to see if there are any more questions
     if (qArray.length<1) {
-        isPlaying= false;
+        isPlaying = false;
         return;
     }
     // random question from array
@@ -156,7 +153,7 @@ function makeQuestion() {
     answer = ansKey[rand];
     // increment number of question asked
     numQs++;
-    qLeft = qArray.length-1;
+    qLeft = qLeft-1;
     // display question and answers
     document.getElementById("question").innerHTML = `Question ${numQs}: ${getQuest[0]}`;
     document.getElementById("1").textContent = getQuest[1]; 
@@ -178,6 +175,9 @@ function makeQuestion() {
         } else {
             formatWrong()
             timer = timer - 3;
+            if (timer<0) {
+                timer = 0;
+            isPlaying = false;}
         }
         
         makeQuestion()
@@ -230,4 +230,15 @@ function formatClear() {
     correct.style.borderRadius = "10px";
     correct.style.color = "black";
     correct.style.padding = "2%";
+}
+
+function resetQs () {
+    let newQs = [];
+    newQs = JSON.parse(localStorage.getItem("ArchiveQs"))
+    qArray = newQs;
+    numQs = 0;
+    numRight = 0;
+    qLeft = qArray.length+1;
+    ansKey = archiveK;
+    console.log(qArray)
 }
