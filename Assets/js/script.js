@@ -11,7 +11,6 @@ let qCard = document.getElementById('question-card')
 let answer = "";
 let pickedAnswer = "";
 let numRight = 0;
-let numQs = 0;
 let archiveQs = [
     ["Which is red?", "Apple", "Carrot", "Celery", "Blueberry"],
     ["Which is orange?", "Apple", "Carrot", "Celery", "Blueberry"],
@@ -19,26 +18,41 @@ let archiveQs = [
     ["Which is green?", "Apple", "Carrot", "Celery", "Blueberry"]
 ];
 let leaderboard = [];
+let numQs = archiveQs.length;
 
 // get/create leaderboard in local storage
 function makeLeader() {
     let hasBeenQuizzed = localStorage.getItem("hasQuizzed");
     if (hasBeenQuizzed == true) {
-        let leaderboard = localStorage.getItem("leaderboard")
+        leaderboard = localStorage.getItem("leaderboard")
     } else {
         localStorage.setItem("hasQuizzed", true);
-        let leaderboard = [
+        leaderboard = [
             ["OOO",0],
             ["OOO",0],
             ["OOO",0],
             ["OOO",0],
             ["OOO",0],
-        ]
-        
+        ];    
     }    
     makeScoreboard();
 }
 
+makeLeader();
+
+//make scoreboard in html
+function makeScoreboard() {
+    for (let i = 0; i < 5; i++) {
+        placeholdernum = i+1;
+        let idName = placeholdernum+"-place";
+        let element = document.getElementById(idName)
+        let initials = leaderboard[i][0]
+        let score = leaderboard[i][1]
+        element.innerHTML = `${initials} = ${score} correct out of ${numQs}`
+        console.log(`idName: ${idName}\nElement: ${element}\n Initials: ${initials} \n Score:${score}`)
+    }
+
+}
 
 // Timer method
     // hanldes timer - while true game is playing
@@ -137,15 +151,7 @@ function makeQuestion() {
     }
 
     function isTop(){
-        for (let i = 0; i < 5; i++) {
-            let idName = [i]+"-place";
-            let element = document.getElementById(idName)
-            leaderboard[i] = element.getAttribute("data-state");
-            for (let i = 0; i< 5;) {
-                const element = arr];
-                
-            }
-        }
+        
     }
 
 // scoreboard display
