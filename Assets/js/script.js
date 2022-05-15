@@ -16,24 +16,19 @@ let answer = "";
 let pickedAnswer = "";
 let numRight = 0;
 let archiveQs = [
-    ["Which is red?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is orange?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is blue?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is green?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is red?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is orange?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is blue?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is green?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is red?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is orange?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is blue?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is green?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is red?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is orange?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is blue?", "Apple", "Carrot", "Celery", "Blueberry"],
-    ["Which is green?", "Apple", "Carrot", "Celery", "Blueberry"]
+   ["What is the HTML DOM?", "Dragging Objects Morosely", "Ding On Miatas", "Don't know", "Document Object Model"],
+   ["If you want to get a HTMl by ID you woulld use which of the following:", "document.getElementById('id')", "document.getElementId('id')", "document.getElement('id')", "document.getById('id')"],
+   ["If you want to query in JavaScript for all elements of a certain type you would use:", "get.all(selectors)", "document.querySelectorAll(selectors)", "document.grab(selectors)", "*.all(selectors)"],
+   ["Which of the following DOES NOT declare a variable in JavaScript?", "let", "const", "this", "var"],
+   ["Which of the following is not a valid JavaScript variable name?", "2names", "_first_and_last_names", "FirstAndLast", "None of the above"],
+   ["______ tag is an extension to HTML that can enclose any number of JavaScript statements.", "\<SCRIPT\>", "\<BODY\>", "\<HEAD\>", "\<TITLE\>"],
+    ["How does JavaScript store dates in a date object?", "The number of seconds since Netscape's public stock offering.", "The number of days since January 1st, 1900", "The number of milliseconds since January 1st, 1970", "None of the above"],
+    ["What is the correct JavaScript syntax to write \"Hello World\"?", "System.out.println(\"Hello World\")", "println (\"Hello World\")", "document.write(\"Hello World\")", "response.write(\"Hello World\")"],
+    [" Inside which HTML element do we put the JavaScript?", "\<js\>", "\<script\>", "\<scripting\>", "\<javascript\>"],    
+    ["In JavaScript, what does the Window.prompt() method return?", "True", "False", "Current Time Stamp", "None of the above"]
 ];
-let archiveK = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+//some of the questions above were taken from: http://mcqspdfs.blogspot.com/2013/08/60-top-javascript-multiple-choice.html
+let archiveK = [4,1,2,3,1,1,3,3,2,4];
 let leaderboard = [];
 let numQs = 0;
 let qLeft = archiveQs.length;
@@ -49,11 +44,11 @@ function makeLeader() {
     } else {
         localStorage.setItem("hasQuizzed", true);
         leaderboard = [
-            ["ABC",5],
-            ["DEF",4],
-            ["GHI",3],
-            ["JKL",2],
-            ["MNO",1],
+            ["ABC",2],
+            ["DEF",1],
+            ["GHI",0],
+            ["JKL",0],
+            ["MNO",0],
         ];
         localStorage.setItem("leaderboard", leaderboard);    
     }    
@@ -164,10 +159,10 @@ function makeQuestion() {
     qLeft = qArray.length-1;
     // display question and answers
     document.getElementById("question").innerHTML = `Question ${numQs}: ${getQuest[0]}`;
-    document.getElementById("1").innerHTML = getQuest[1]; 
-    document.getElementById("2").innerHTML = getQuest[2];
-    document.getElementById("3").innerHTML = getQuest[3];
-    document.getElementById("4").innerHTML = getQuest[4];
+    document.getElementById("1").textContent = getQuest[1]; 
+    document.getElementById("2").textContent = getQuest[2];
+    document.getElementById("3").textContent = getQuest[3];
+    document.getElementById("4").textContent = getQuest[4];
     //remove question from array - prevent repeats
     qArray.splice(rand,1);
     ansKey.splice(rand,1);
