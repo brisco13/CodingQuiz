@@ -12,29 +12,49 @@
 </head>
 <body>
     <!-- banner at the top of screen - will show progress/status of quiz -->
-    <header>
-        <h1 class="banner">Hello! Welcome to quiz!</h1>
-    </header>
+    <div id="header">
+        <div id="banner"><h1>Hello! Welcome to quiz!</h1></div>
+        <h1 class="time"></h1>
+        <div id="main"></div>
+    </div>
 
+    <main>
+
+    <button id="start_button" type="button" class="btn btn-dark">Start Game</button>
     <!-- show questions with options -->
     <!-- visible while playing and not visible when not playing -->
+    <div id="question-card" style="display: none">
     <section class="quiz-content">
-        <!-- container with question -->
-        <div class="question">
-
+        <div>
+            <h2 id="question">Test question goes here</h2>
         </div>
-        <!-- options to answer -->
-        <div class="options">
+        <br><br>
+        <button type="button" id="option1" class="btn btn-primary answer">Primary1</button>
+        <br><br>
+        <button type="button" id="option2" class="btn btn-primary answer">Primary2</button>
+        <br><br>
+        <button type="button" id="option3" class="btn btn-primary answer">Primary3</button>
+        <br><br>
+        <button type="button" id="option4" class="btn btn-primary answer">Primary4</button>
 
-        </div>
     </section>
+    </div>
 
+  
+    <br><br><br>
     <!-- show top three scores with initials -->
     <!-- visible while not playing -->
-    <section class="scoreboard">
-
+    <div id="scoreboard">
+    <section>
+        <h2>ScoreBoard</h2> <br>
+        <h3 id="1-place">OOO = 0</h3> <br>
+        <h3 id="2-place">OOO = 0</h3> <br>
+        <h3 id="3-place">OOO = 0</h3> <br>
+        <h3 id="4-place">OOO = 0</h3> <br>
+        <h3 id="5-place">OOO = 0</h3>
     </section>
-
+    </div>
+    </main>
     <!-- link to js that starts quiz, shows questions, and handles grading -->
     <script src="./Assets/js/script.js"></script>
 </body>
