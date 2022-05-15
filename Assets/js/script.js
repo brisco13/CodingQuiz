@@ -1,13 +1,43 @@
 let timer = 20; //seconds
 let timeLeft = document.querySelector(".time")
 let start_button =document.querySelector("#start_button") 
-let word = "chrome"
-let wordArray = [];
+let qArray = [];
+let ansKey = [1,2,4,3];
 let isPlaying = false;
 var header = document.getElementById('header')
 let banner = document.getElementById('banner')
 let scoreboard = document.getElementById('scoreboard')
 let qCard = document.getElementById('question-card')
+let answer = "";
+let pickedAnswer = "";
+let numRight = 0;
+let numQs = 0;
+let archiveQs = [
+    ["Which is red?", "Apple", "Carrot", "Celery", "Blueberry"],
+    ["Which is orange?", "Apple", "Carrot", "Celery", "Blueberry"],
+    ["Which is blue?", "Apple", "Carrot", "Celery", "Blueberry"],
+    ["Which is green?", "Apple", "Carrot", "Celery", "Blueberry"]
+];
+let leaderboard = [];
+
+// get/create leaderboard in local storage
+function makeLeader() {
+    let hasBeenQuizzed = localStorage.getItem("hasQuizzed");
+    if (hasBeenQuizzed == true) {
+        let leaderboard = localStorage.getItem("leaderboard")
+    } else {
+        localStorage.setItem("hasQuizzed", true);
+        let leaderboard = [
+            ["OOO",0],
+            ["OOO",0],
+            ["OOO",0],
+            ["OOO",0],
+            ["OOO",0],
+        ]
+        
+    }    
+    makeScoreboard();
+}
 
 
 // Timer method
@@ -19,10 +49,13 @@ let qCard = document.getElementById('question-card')
     
             if(timer === 0 || isPlaying == false) {
                 clearInterval(timerInterval);
-                timer = 2;
-                if (isPlaying == true) {
-                    window.alert("You finished!")
-                } else {window.alert("Out of time!")}
+                timer = 20;
+                if (isPlaying == false) {
+                    window.alert(`You finished!\nYou got ${numRight} questions correct!`)
+
+                } else {
+                    window.alert("Out of time!")
+                }
 
                 // runcheck to see if in top
 
@@ -50,22 +83,8 @@ let qCard = document.getElementById('question-card')
         banner.style.display = "none";
     })
 
-    // question answered
-    qCard.addEventListener("click", function(event) {
-        var answer = event.target()
-            if (answer = ".answer") {
-                console.log("success!")
-            } else {console.log("fail!")}
-    })
-
-    // get selected answer
 
 
-    // make question
-    var makeQuestion = function() {
-        let answers = document.querySelectorAll('.answer');
-        console.log("Answers: " + answers)
-    }
 
     
 // start button triggers quiz
@@ -77,26 +96,57 @@ let qCard = document.getElementById('question-card')
 
     function startGame() {
         isPlaying = true;
-        wordArray = word.split("");
+        qArray = archiveQs;
         countdown();
-        document.addEventListener("keydown", keyboardListen) 
+        makeQuestion();
     }
 
 
 
 // quiz question generation
+function makeQuestion() {
+    // check to see if there are any more questions
+    if (qArray.length<1) {
+        isPlaying= false;
+        return;
+    }
     // random question from array
-    // display question 
-    // display answers
+    let rand = Math.floor(Math.random()*qArray.length);
+    let getQuest = qArray[rand];
+    // store answer key
+    answer = ansKey[rand];
+    // increment number of question asked
+    numQs++;
+    // display question and answers
+    document.getElementById("question").innerHTML = getQuest[0];
+    document.getElementById("1").innerHTML = getQuest[1]; 
+    document.getElementById("2").innerHTML = getQuest[2];
+    document.getElementById("3").innerHTML = getQuest[3];
+    document.getElementById("4").innerHTML = getQuest[4];
+    //remove question from array - prevent repeats
+    qArray.splice(rand,1);
+}
 
 // checks answer and tabulates # of correct
-    // looks at question and sees if correct answer was selected
-    // increments # of questions
-    // increments # of correct
-    // calls another question to be asked if game is still going
+    function answeredQ(newID)
+    {   pickedAnswer = newID;
+        if (pickedAnswer == answer) {
+            numRight++;
+        } 
+        makeQuestion()
+    }
 
-// remove current question from this round of quiz (prevent repeat questions)
-    // checks which question was asked then removes
+    function isTop(){
+        for (let i = 0; i < 5; i++) {
+            let idName = [i]+"-place";
+            let element = document.getElementById(idName)
+            leaderboard[i] = element.getAttribute("data-state");
+            for (let i = 0; i< 5;) {
+                const element = arr];
+                
+            }
+        }
+    }
 
 // scoreboard display
     // starts when game ends
